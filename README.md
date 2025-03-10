@@ -31,7 +31,7 @@ AIM Modules
    * Virial equation
 
 - **MixPred**: Mixture adsorption isotherm using
-   * Extended dual-site Langmuir model (EDSL)
+   * Extended Dual-site Langmuir model (EDSL)
    * Ideal Adsorption Solution Theory (IAST)
 
 - **BreakLab**: Rigorous multicomponent breakthrough simulation
