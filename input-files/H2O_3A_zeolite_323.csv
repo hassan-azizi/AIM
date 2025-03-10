@@ -1,0 +1,16 @@
+#units_pressure Pa
+#units_loading mol/kg
+#units_temperature K
+#temperature 323
+1,1.41
+2,1.82
+5,2.76
+10,4.3
+20,6.32
+50,8.31
+100,9.12
+300,10.03
+500,10.42
+1000,10.96
+2000,11.51
+2500,11.7
