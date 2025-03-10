@@ -35,7 +35,7 @@ AIM Modules
    * Ideal Adsorption Solution Theory (IAST)
 
 - **BreakLab**: Rigorous multicomponent breakthrough simulation
-   * Supports up to 6 component systems
+   * Supports up to 5 component systems
    * Non-isothermal/non-isobaric breaktrhough simulation
    * Axial dispersion
    * Linear Driving Force (LDF)
