@@ -1,14 +1,16 @@
-AIM Build
-=========================
-# MATLAB Project for Compiling Source Code with MATLAB Runtime Compiler
+# MATLAB Project Template File for Compiling Source Code with MATLAB
 
-This repository contains a MATLAB project (`*.prj` file) designed to compile the provided source code using the MATLAB Runtime Compiler. Follow the instructions below to set up and compile the project.
+This directory contains a MATLAB project file (`AIM_Build.prj`) designed to facilitate end users who want to compile the provided source code using the MATLAB for re-distribution on machines with OS other than Microsoft Windows. The successful compilation will generate AIM installer that can be distributed.
+Follow the instructions below to set up and compile the project.
 
 ## Prerequisites
-
 - **MATLAB Version**: Ensure you have MATLAB R2024a or a newer version installed.
-- **MATLAB Compiler**: This toolbox is required to compile MATLAB code into standalone applications. Version must be R2024a or newer.
-- **MATLAB Runtime**: The compiled application requires the MATLAB Runtime environment to run on machines without MATLAB installed. The version of MATLAB Runtime must match the version of MATLAB Compiler used for compilation.
+- **MATLAB Compiler**: This MATLAB toolbox is required to compile MATLAB code into standalone applications. Version must be R2024a or newer.
+- **MATLAB Runtime**: The compiled application requires the MATLAB Runtime environment to run on machines without MATLAB installed. The version of MATLAB Runtime must match the version of MATLAB Compiler used for compilation. While compiling the source code, one has two options
+    * 1. Create an application installer with MATLAB Runtime.
+    * 2. Create an application installer without MATLAB Runtime. In this case, users of the application will need to download the MATLAB Runtime.
+In the former case, you must download the MATLAB Runtime installer that matches both the version and update level of MATLAB used to create the installer.
+Details about installing MATLAB Runtime on different platforms can be found [here](https://www.mathworks.com/help/compiler/install-the-matlab-runtime.html).
 
 ## Setup Instructions
 
