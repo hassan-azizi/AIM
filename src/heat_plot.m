@@ -17,7 +17,7 @@ function [] = heat_plot(ax, pressure_data, loading_data, T_flag, T_array, isothe
         [idx_ret, ~] = find(loading_data~=0.0);
         loading_data = loading_data(idx_ret, 1);
         dH = isotherm_struc.dH ./ 1e03;  % Conversion from J/mol to kJ/mol
-        dH = -1.*dH;                     % For plotting purposes
+        % dH = -1.*dH;                     % For plotting purposes
         if isscalar(dH)
             dH = ones(size(loading_data)).*dH;
         elseif length(dH) ~= length(loading_data)
