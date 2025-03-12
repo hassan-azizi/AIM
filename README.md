@@ -41,7 +41,7 @@ AIM Modules
    * Linear Driving Force (LDF)
    * Ergun equation for pressure drop
 
-Cite us
+Cite Us
 ============
 If you use AIM software for your scientific publications, please cite:<br>
 "AIM: A collection of user-friendly adsorption isotherm GUI tools for fixed-bed breakthrough simulation"<br>
