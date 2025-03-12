@@ -43,13 +43,13 @@ AIM Modules
 
 Cite us
 ============
-If you use AIM software for scientific publications, please cite:<br>
+If you use AIM software for your scientific publications, please cite:<br>
 "AIM: A collection of user-friendly adsorption isotherm GUI tools for fixed-bed breakthrough simulation"<br>
 Muhammad Hassan, Sunghyun Yoon, Yu Chen, Youn-Sang Bae, Chung-Yul Yoo, Dong-Yeun Koh, Chang-Seop Hong, Ki-Bong Lee, Yongchul G. Chung
 <br>Journal: ####<br>
 URL: ####
 
-## AUTHORS
+## MAINTAINERS
 * Muhammad Hassan (hassanaz.14@outlook.com)
 * Sunghyun Yoon
 * Yongchul G. Chung (drygchung@gmail.com)
