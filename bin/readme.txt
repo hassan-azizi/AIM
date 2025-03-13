@@ -1,5 +1,8 @@
 AIM Executable
 
+MATLAB version used for developement: R2024a
+Compiler version: 24.1 (R2024a)
+
 1. Prerequisites for Deployment 
 
 Verify that MATLAB Runtime(R2024a) is installed.   
