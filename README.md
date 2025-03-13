@@ -5,9 +5,9 @@ AIM is a collection of MATLAB based Graphical User Interface (GUI) tools for ads
 
 Primary features of AIM include
 - Integrated workflow within modules
-- GUI environnment to facilitate data input/output, model selection, and simulation type selection.
-- Dynamic plots for pressure, loading, temperature, and composition.
-- Data and graphics export in different formats.
+- GUI environnment to facilitate data input/output, model selection, and simulation type selection
+- Dynamic plots for pressure, loading, temperature, and composition
+- Data and graphics export in different formats
 
 **Developed by:** [Muhammad Hassan](https://github.com/hassan-azizi)
 
