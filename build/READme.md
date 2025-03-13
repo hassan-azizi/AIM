@@ -25,16 +25,14 @@ Details about installing MATLAB Runtime on different platforms can be found [her
    - Start the MATLAB application.
 
 3. **Open the AIM Project**:
-   - Navigate to the AIM/build directory.  
+   - Navigate to the AIM project directory.  
    - Double-click the `AIM_Build.prj` file to open it in MATLAB.
 
-4. **Add Necessary Files**:
-   - In the MATLAB Compiler project window, add all the files present in the AIM/src directory.
+4. **Check Necessary Files**:
+   - The project template file `AIM_Build.prj` is already configured and contain all the neccessary files.
+   - Do not change the location of the `AIM_Build.prj` file. It must be present in the project directory.
 
-5. **Configure Application Settings**:
-   - Specify the main file to be executed, by adding "Main_app.mlapp" from AIM/src directory.
-
-6. **Compile the Application**:
+5. **Compile the Application**:
    - Click the "Package" button to start the compilation process.
    - Upon completion, MATLAB will generate the standalone application and a `readme.txt` file containing deployment prerequisites and a list of packaged files.
 
