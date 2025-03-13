@@ -41,6 +41,15 @@ AIM Modules
    * Linear Driving Force (LDF)
    * Ergun equation for pressure drop
 
+Installation
+========
+- **Windows users**
+   Please use the 'AIM_Installer.exe' file located in the [bin](./bin/) directory.
+
+- **Linux and macOS users**
+   Users of Linux and macOS need to compile the app for redistirbution.
+   Please follow the instruction given in the [READme](./build/READme.md) file located in the build directory for compilation.
+
 Cite Us
 ============
 If you use AIM software for your scientific publications, please cite:<br>
