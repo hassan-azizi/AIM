@@ -1,6 +1,7 @@
 # MATLAB Project Template File for Compiling Source Code with MATLAB
 
-This directory contains a MATLAB project file (`AIM_Build.prj`) designed to facilitate end users who want to compile the provided source code using the MATLAB for re-distribution on machines with OS other than Microsoft Windows. The successful compilation will generate AIM installer that can be distributed.
+Please follow the instructions below to compile the provided source code using the MATLAB for re-distribution. The successful compilation will generate AIM installer that can be distributed. Note that the MATLAB compilation is platform dependent. The generated will function properly only if the operating system of the end user is same as the operating system of the machine, the code is compiled on.
+
 Follow the instructions below to set up and compile the project.
 
 ## Prerequisites

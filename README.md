@@ -43,12 +43,12 @@ AIM Modules
 
 Installation
 ========
-- **Windows users**
-   Please use the 'AIM_Installer.exe' file located in the [bin](./bin/) directory.
+- **Windows users**:
+   <br>Please use the 'AIM_Installer.exe' file located in the [bin](./bin/) directory.
 
 - **Linux and macOS users**
-   Users of Linux and macOS need to compile the app for redistirbution.
-   Please follow the instruction given in the [READme](./build/READme.md) file located in the build directory for compilation.
+   <br>Users of Linux and macOS need to compile the app for redistirbution.
+   <br>Please follow the instruction given in the [READme](./build/READme.md) file located in the build directory for compilation.
 
 Cite Us
 ============
