@@ -1,4 +1,4 @@
-# MATLAB Project Template File for Compiling Source Code with MATLAB
+# Compiling AIM Source Code with MATLAB
 
 Please follow the instructions below to compile the provided source code using the MATLAB for re-distribution. The successful compilation will generate AIM installer that can be distributed. Note that the MATLAB compilation is platform dependent. The generated will function properly only if the operating system of the end user is same as the operating system of the machine, the code is compiled on.
 
