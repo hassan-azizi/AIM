@@ -75,7 +75,7 @@
       <param.example />
     </unset>
     <fileset.main>
-      <file>${PROJECT_ROOT}\Main_app.mlapp</file>
+      <file>${PROJECT_ROOT}\src\Main_app.mlapp</file>
     </fileset.main>
     <fileset.resources>
       <file>${PROJECT_ROOT}\src\Adsorption_Breakthrough_case.m</file>
