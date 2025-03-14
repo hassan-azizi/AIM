@@ -192,6 +192,7 @@ function opt = isotherm_fit_opt(isotherm_model, loading_data, Pressure)
             opt.num_params = num_param_vector(13);
             opt.lb = zeros(1, opt.num_params);
             opt.ub = UL_COMMON .* ones(1, opt.num_params);
+            opt.ub(2) = 1.0;        % f parameter is a fraction ranging from o to 1 in DD model
             % opt.ub([2, 3]) = UL_langmuir_constant .* BET_tol;
             % opt.guess = [sat_loading_guess, K_guess, C_guess, n_guess];
             opt.guess = [SAT_LOADING_GUESS, 0.0, 0.0, 0.0,...
