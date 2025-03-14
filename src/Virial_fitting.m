@@ -1,6 +1,6 @@
 function [dH, dH_inf, isotherm_struc] = Virial_fitting(pressure_data,...
                                                 loading_data, temperature_data, guess_matrix, lb_matrix, ub_matrix, ...
-                                                num_a_params, weight_assignment, plot_res, plot_heat)
+                                                num_a_params, weight_assignment, plot_res, plot_heat, use_multi)
     %% Data Preparation
     pressure_data_m = rmmissing(reshape(pressure_data, [], 1));
     loading_data_m = rmmissing(reshape(loading_data, [], 1));
@@ -42,19 +42,33 @@ function [dH, dH_inf, isotherm_struc] = Virial_fitting(pressure_data,...
     fitting_algo_mode = 1;
     fitting_algorithm_array = algorithms_available;
     
-    
     % Calling Isotherm options
     isotherm_model = 'Virial';
     isotherm_opt = isotherm_fit_opt(isotherm_model, 1);
     
+    % Handling multistart flag if not specified in input arguments
+    if nargin < 11
+        % use_multi = 0;    
+        use_multi = 1;    
+    end
+
     % Changing the default values of initial guesses/upper and
-    % lower bounds to user specified values  
+    % lower bounds to user specified values. The initial guess will be override if 
+    % the user chooses multistart 
     isotherm_opt.num_params = size(guess_matrix, 1);
     isotherm_opt.num_a = num_a_params;
     isotherm_opt.guess = guess_matrix(1:isotherm_opt.num_params, 1)';
     isotherm_opt.lb = lb_matrix(1:isotherm_opt.num_params, 1)';
     isotherm_opt.ub = ub_matrix(1:isotherm_opt.num_params, 1)';
     
+    % Initialize and problem and multistart object structures if multistart is used
+    if use_multi
+        num_trials = 1000;
+        multi_problem = createOptimProblem('lsqnonlin');
+        multi_object = MultiStart("UseParallel", false, "Display","final",...
+                                   "FunctionTolerance",1e-10, "MaxTime", Inf,...
+                                   "StartPointsToRun", "all", "XTolerance", 1e-10);
+    end
 
     %% Fitting using lsqnonlin different algorithms and GA
     % [fitted_params_lsq, RMSE_lsq, r2_lsq, exitflag_lsq, ~] = fit_isotherm_diff_algo(isotherm_opt, fitting_algo_mode, fitting_algorithm_array);
@@ -170,14 +184,20 @@ function [dH, dH_inf, isotherm_struc] = Virial_fitting(pressure_data,...
         % Residual function handle
         fit_function = @(x)residual_func(x, isotherm_fun, isotherm_data(:, 1), ...
                                         isotherm_data(:, 2), isotherm_data(:, 3), num_a, weight_vector);
-       
-
         try
-            [fitted_params, resnorm, residual, exitflag] = lsqnonlin(fit_function, initial_guess, params_lb, params_ub, current_options);
-            % Use MultiStart with lsqnonlin
-            % ms = MultiStart('UseParallel', true);    % MultiStart configuration
-            % problem = @(x)lsqnonlin(fit_function, x, params_lb, params_ub, current_options);
-            % [xmulti, fval] = run(ms, problem, 50);   % 50 start points
+            if ~use_multi
+                [fitted_params, resnorm, ~, exitflag] = lsqnonlin(fit_function, initial_guess, params_lb, params_ub, current_options);
+            
+            else
+                % Update problem structure with new options, if multistart is used
+                multi_problem.objective = fit_function;
+                multi_problem.x0 = initial_guess;
+                multi_problem.lb = params_lb;
+                multi_problem.ub = params_ub;
+                multi_problem.options = current_options;
+
+                [fitted_params, resnorm, exitflag, output] = run(multi_object, multi_problem, num_trials);
+            end
 
             if exitflag == 0
                 error("Maximum Iterations for isotherm model %s and algorithm %s reached! Terminating the solution...", ...
