@@ -48,8 +48,8 @@ function [dH, dH_inf, isotherm_struc] = Virial_fitting(pressure_data,...
     
     % Handling multistart flag if not specified in input arguments
     if nargin < 11
-        % use_multi = 0;    
-        use_multi = 1;    
+        use_multi = 0;    
+        % use_multi = 1;    
     end
 
     % Changing the default values of initial guesses/upper and
@@ -65,7 +65,7 @@ function [dH, dH_inf, isotherm_struc] = Virial_fitting(pressure_data,...
     if use_multi
         num_trials = 1000;
         multi_problem = createOptimProblem('lsqnonlin');
-        multi_object = MultiStart("UseParallel", false, "Display","final",...
+        multistart_object = MultiStart("UseParallel", false, "Display","final",...
                                    "FunctionTolerance",1e-10, "MaxTime", Inf,...
                                    "StartPointsToRun", "all", "XTolerance", 1e-10);
     end
@@ -174,7 +174,7 @@ function [dH, dH_inf, isotherm_struc] = Virial_fitting(pressure_data,...
     function [fitted_params, resnorm, exitflag, RMSE, r2] = fit_isotherm(isotherm_opt, current_options, current_algo)
         
         % Extracting data from isotherm options structure
-        current_model = isotherm_opt.name;
+        % current_model = isotherm_opt.name;
         isotherm_fun = isotherm_opt.fun;
         params_lb = isotherm_opt.lb;
         params_ub = isotherm_opt.ub;
@@ -196,15 +196,15 @@ function [dH, dH_inf, isotherm_struc] = Virial_fitting(pressure_data,...
                 multi_problem.ub = params_ub;
                 multi_problem.options = current_options;
 
-                [fitted_params, resnorm, exitflag, output] = run(multi_object, multi_problem, num_trials);
+                [fitted_params, resnorm, exitflag, output] = run(multistart_object, multi_problem, num_trials);
             end
 
             if exitflag == 0
                 error("Maximum Iterations for isotherm model %s and algorithm %s reached! Terminating the solution...", ...
-                        current_model, current_algo);
+                        "Virial", current_algo);
             elseif exitflag < 0
                 error("Solver failed to find the isotherm parameters for isotherm model %s and algorithm %s",...
-                        current_model, current_algo);
+                        "Virial", current_algo);
             end
 
             % Root Mean Square Error
