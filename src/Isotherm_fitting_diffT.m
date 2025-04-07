@@ -110,7 +110,7 @@ function [dH, dH_RMSE, theta_iso_array, theta_RMSE_array, Isotherm_struc_ref_2] 
     
         colors = ["blue", "green", "red"];
     
-        norm_pressure_data = pressure_data .* exp(dH/8.3144 .* (1./T_array - 1/T_ref));
+        norm_pressure_data = pressure_data .* exp(-1.0 .* dH/8.3144 .* (1./T_array - 1/T_ref));
         
         for k=1:length(T_array)      
             predicted_loadings(:, k) = isotherm_fun_ref(params_ref, norm_pressure_data(:, k)); 
@@ -126,7 +126,7 @@ function [dH, dH_RMSE, theta_iso_array, theta_RMSE_array, Isotherm_struc_ref_2] 
         figure(2)
         scatter(T_array, theta_iso_array);
         hold on
-        plot(T_array, exp(dH/8.3144 .* (1./T_array - 1/T_ref))); 
+        plot(T_array, exp(-1.0 .* dH/8.3144 .* (1./T_array - 1/T_ref))); 
         hold off
     end
     %
