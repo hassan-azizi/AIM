@@ -26,8 +26,9 @@ function [] = heat_plot(ax, pressure_data, loading_data, T_flag, T_array, isothe
 
         %% Plotting heat data
         cla (ax, "reset");
-       
-        scatter(ax, loading_data, dH, scatter_marker_size, 'filled', 'o', 'MarkerEdgeColor','k');
+        
+        % Plot positive dH with negative sign in ylabel 
+        scatter(ax, loading_data, -1.0.*dH, scatter_marker_size, 'filled', 'o', 'MarkerEdgeColor','k');
            
         % Checking for log scale requirement
         if xlogscale_flag
@@ -46,7 +47,8 @@ function [] = heat_plot(ax, pressure_data, loading_data, T_flag, T_array, isothe
         % else
         %     x_label = sprintf("Pressure");
         % end
-        y_label = sprintf("Enthalpy of Adsorption dH (kJ/mol)");
+        % y_label = sprintf("Enthalpy of Adsorption dH (kJ/mol)");
+        y_label = sprintf("Heat of Adsorption %sdH (kJ/mol)", char(8722));
     
         if ~isempty(unit_loading)
             x_label = sprintf("Gas Uptake (%s)", unit_loading);
