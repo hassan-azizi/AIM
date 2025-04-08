@@ -21,7 +21,7 @@ function [] = heat_plot(ax, pressure_data, loading_data, T_flag, T_array, isothe
         if isscalar(dH)
             dH = ones(size(loading_data)).*dH;
         elseif length(dH) ~= length(loading_data)
-            error("Inconsistent size of loading data and enthalpy of adsorption.");
+            error("Inconsistent size of loading and heat of adsorption data.");
         end
 
         %% Plotting heat data
@@ -48,16 +48,17 @@ function [] = heat_plot(ax, pressure_data, loading_data, T_flag, T_array, isothe
         %     x_label = sprintf("Pressure");
         % end
         % y_label = sprintf("Enthalpy of Adsorption dH (kJ/mol)");
-        y_label = sprintf("Heat of Adsorption %sdH (kJ/mol)", char(8722));
-    
+        % y_label = sprintf("Heat of Adsorption %sdH (kJ/mol)", char(8722));
+        y_label = strcat(char(8722), '\DeltaH_{ads} (kJ/mol)');
+
         if ~isempty(unit_loading)
             x_label = sprintf("Gas Uptake (%s)", unit_loading);
         else
             x_label = sprintf("Gas Uptake");
         end
     
-        xlabel(ax, x_label, FontSize = fontsize, FontName=fontname, FontWeight=fontweight);
-        ylabel(ax, y_label, FontSize = fontsize, FontName=fontname, FontWeight=fontweight);
+        xlabel(ax, x_label, FontSize=fontsize, FontName=fontname, FontWeight=fontweight);
+        ylabel(ax, y_label, "Interpreter","tex", FontSize=fontsize, FontName=fontname, FontWeight=fontweight);
         
         % legend(ax, {'dH'}, Location="best");
         
