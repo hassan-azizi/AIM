@@ -105,6 +105,7 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     %
     %% ODE numerical options and calling function
     Jac_patt = Jacobian(N, calc_type);
+    % options = odeset('JPattern',Jac_patt, 'RelTol', RelTol, 'AbsTol', AbsTol, 'Events', event_fxn, 'MaxStep', 5);
     options = odeset('JPattern',Jac_patt, 'RelTol', RelTol, 'AbsTol', AbsTol, 'Events', event_fxn);
 
     if mixture_predict_method == 0
@@ -113,17 +114,26 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
                 ' all components must be either SS-Langmuir or DS-Langmuir!'])
         else
             [t_1, ads_reac_sol] = ode15s(Adsorption_fxn_Ext_Lang, timespan, x, options);
+            % sol_struc = ode15s(Adsorption_fxn_Ext_Lang, [0 time].*v_0/L, x, options);
         end
 
     elseif mixture_predict_method == 1
         
         [t_1, ads_reac_sol] = ode15s(Adsorption_fxn_IAST, timespan, x, options);
+        % sol_struc = ode15s(Adsorption_fxn_IAST, [0 time].*v_0/L, x, options);
     else
         error("Please specify the mixture isotherm prediction type!")
     end
 %
     %% Solution Processing
-    
+    % Interpolating solution variables
+    % t_1 = timespan;
+    % ads_reac_sol = deval(sol_struc, t_1);
+    % 
+    % % Transporsing solution variables such that column ==> nodes, rows ==>
+    % % time values
+    % ads_reac_sol = ads_reac_sol';
+
     % Solution Correction
     ads_reac_sol = Correction_func(ads_reac_sol);
 
@@ -131,6 +141,7 @@ function solution = Adsorption_Breakthrough_case(parameter_set, progress_bar)
     ads_reac_sol = pressure_correction(ads_reac_sol, n_dot0, "Bottom");
 
     % Unpacking solution in respective variables
+    % solution.t = t_1'.*L/v_0;
     solution.t = t_1.*L/v_0;
     solution.P    = ads_reac_sol(:, 1: N+2) .* P_0/1000;     % Pressure in kPa
     solution.C1 = max(ads_reac_sol(:, N+3: 2*N+4),  0);          
