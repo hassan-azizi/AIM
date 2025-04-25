@@ -1,12 +1,16 @@
 function isotherm_struc = Isotherm_fitting(isotherm_model, pressure_data, loading_data, guess_matrix, ...
                                            lb_matrix, ub_matrix, weight_assigment, plot_res,...
-                                           algorithm_id, iso_models_available, P_saturation)
+                                           algorithm_id, iso_models_available, P_saturation, use_multi)
     %% Function Variables
     N = size(pressure_data, 1);     % number of data points
     
     % P_saturation is required for Klotz, Dubinin-Astakhov, and Do-Do model
     if nargin<11
         P_saturation = 1.0;
+    % Handling multistart flag if not specified in input arguments
+    elseif nargin<12
+        use_multi = 0;    
+        % use_multi = 1; 
     end
 
     % Weights assignments correponding to the data points
@@ -53,7 +57,15 @@ function isotherm_struc = Isotherm_fitting(isotherm_model, pressure_data, loadin
         fitting_algo_mode = 0;
         fitting_algorithm_array = algorithms_available(str2double(algorithm_id)); 
     end
-
+    
+    % Initialize and problem and multistart object structures if multistart is used
+    if use_multi
+        num_trials = 1000;
+        multi_problem = createOptimProblem('lsqnonlin');
+        multistart_object = MultiStart("UseParallel", false, "Display","final",...
+                                   "FunctionTolerance",1e-10, "MaxTime", Inf,...
+                                   "StartPointsToRun", "all", "XTolerance", 1e-10);
+    end
     %% Isotherm Fitting
     if isotherm_fitting_mode
         RMSE_diff_iso = zeros(1, length(iso_model_array));
@@ -191,8 +203,20 @@ function isotherm_struc = Isotherm_fitting(isotherm_model, pressure_data, loadin
         end
 
         try
-            [fitted_params, resnorm, ~, exitflag] = lsqnonlin(fit_function, initial_guess, params_lb, params_ub, current_options);
-        
+            if ~use_multi
+                [fitted_params, resnorm, ~, exitflag] = lsqnonlin(fit_function, initial_guess, params_lb, params_ub, current_options);
+            
+            else
+                % Update problem structure with new options, if multistart is used
+                multi_problem.objective = fit_function;
+                multi_problem.x0 = initial_guess;
+                multi_problem.lb = params_lb;
+                multi_problem.ub = params_ub;
+                multi_problem.options = current_options;
+
+                [fitted_params, resnorm, exitflag, ~] = run(multistart_object, multi_problem, num_trials);
+            end
+
             if exitflag == 0
                 error("Maximum Iterations for isotherm model %s and algorithm %s reached! Terminating the solution...", ...
                         current_model, current_algo);

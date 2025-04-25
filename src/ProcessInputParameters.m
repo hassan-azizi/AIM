@@ -107,7 +107,7 @@ function InputParams = ProcessInputParameters(parameter_set)
     ro_s       = ro_total                       ;   % Density of the adsorbent [kg/m^3]
     r_p        = dia_p/2                        ;   % Radius of the pellets [m]
     C_ps       = C_psolid                       ;   % Specific heat capacity of the adsorbent [J/kg/K]
-    q_s0       = max(isotherm_params(2:end, :), ...
+    q_s0       = max(isotherm_params(2:end-2, :), ...
                     [], "all")                  ;   % Molar loading scaling factor [mol/kg]
     if isnan(q_s0) || q_s0 <= 0
         q_s0 = 1;

@@ -1,6 +1,6 @@
 function [dH, dH_RMSE, theta_iso_array, theta_RMSE_array, Isotherm_struc_ref_2] = Isotherm_fitting_diffT(isotherm_model, ...
                             pressure_data, loading_data, temperature_data, ID_T_ref, guess_matrix, lb_matrix, ub_matrix, ...
-                            algorithm_id, weight_assignment, plot_diffT_curves, plot_theta_cuvre, iso_models_available)
+                            algorithm_id, weight_assignment, plot_diffT_curves, plot_theta_cuvre, iso_models_available, use_multi)
     %% Function Variables
     % theta_ub = 1000;
     % theta_lb = 0;
@@ -39,8 +39,13 @@ function [dH, dH_RMSE, theta_iso_array, theta_RMSE_array, Isotherm_struc_ref_2] 
         fitting_algorithm_array = algorithms_available(str2double(algorithm_id)); 
     end
     
+    % Handling multistart flag if not specified in input arguments
+    if nargin < 14
+        use_multi = 0;    
+        % use_multi = 1;
+    end
     %% Isotherm function fitted for reference temperature
-    Isotherm_struc_ref = Isotherm_fitting(isotherm_model, pressure_ref, loading_ref, guess_matrix, lb_matrix, ub_matrix, weight_assignment, 'false', 'auto', iso_models_available);
+    Isotherm_struc_ref = Isotherm_fitting(isotherm_model, pressure_ref, loading_ref, guess_matrix, lb_matrix, ub_matrix, weight_assignment, 'false', 'auto', iso_models_available, 1.0, use_multi);
     
     %% Predict theta
     theta_iso_array = ones(1, length(temperature_data));
@@ -77,7 +82,7 @@ function [dH, dH_RMSE, theta_iso_array, theta_RMSE_array, Isotherm_struc_ref_2] 
 
     % Using the best isotherm model from reference temperature fitting results
     isotherm_model_ref = Isotherm_struc_ref.name;
-    Isotherm_struc_ref_2 = Isotherm_fitting(isotherm_model_ref, norm_pressure, norm_loadings, guess_matrix, lb_matrix, ub_matrix, weight_assignment, 'false', 'auto', iso_models_available);
+    Isotherm_struc_ref_2 = Isotherm_fitting(isotherm_model_ref, norm_pressure, norm_loadings, guess_matrix, lb_matrix, ub_matrix, weight_assignment, 'false', 'auto', iso_models_available, 1.0, use_multi);
     
     % Appending dH to isotherm structure array
     Isotherm_struc_ref_2.dH = dH;
@@ -105,7 +110,7 @@ function [dH, dH_RMSE, theta_iso_array, theta_RMSE_array, Isotherm_struc_ref_2] 
     
         colors = ["blue", "green", "red"];
     
-        norm_pressure_data = pressure_data .* exp(dH/8.3144 .* (1./T_array - 1/T_ref));
+        norm_pressure_data = pressure_data .* exp(-1.0 .* dH/8.3144 .* (1./T_array - 1/T_ref));
         
         for k=1:length(T_array)      
             predicted_loadings(:, k) = isotherm_fun_ref(params_ref, norm_pressure_data(:, k)); 
@@ -121,7 +126,7 @@ function [dH, dH_RMSE, theta_iso_array, theta_RMSE_array, Isotherm_struc_ref_2] 
         figure(2)
         scatter(T_array, theta_iso_array);
         hold on
-        plot(T_array, exp(dH/8.3144 .* (1./T_array - 1/T_ref))); 
+        plot(T_array, exp(-1.0 .* dH/8.3144 .* (1./T_array - 1/T_ref))); 
         hold off
     end
     %

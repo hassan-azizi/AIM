@@ -1,7 +1,7 @@
 function opt = isotherm_fit_opt(isotherm_model, loading_data, Pressure)
     %% Function variables
     num_param_vector = [2, 4, 3, 6, 3, 3, 3, 3, 3, 6, 3, 4, 6];
-    UL_COMMON = 1e06;           % it was 1e03 initially, changed after ding STA model
+    UL_COMMON = 1e03;           % it was 1e03 initially, changed after ding STA model
     UL_LANG_CONSTANT = 1e03;    % Changed from 1 after trying high affinity xylene cases
     LL_theta = -100;        % Specific to Temkin model
     UL_theta = 100;         % Specific to Temkin model
@@ -11,7 +11,6 @@ function opt = isotherm_fit_opt(isotherm_model, loading_data, Pressure)
     EXPONENT_GUESS = 1.0;
     THETA_GUESS = 0.0;
     BET_TOL = 1e-8;         % Need tolerance to avoid getting undefined values in BET  
-    
 
     % Get guesses for saturation loading and langmuir constant
     if (nargin==3) && length(loading_data)>1 
@@ -192,6 +191,7 @@ function opt = isotherm_fit_opt(isotherm_model, loading_data, Pressure)
             opt.num_params = num_param_vector(13);
             opt.lb = zeros(1, opt.num_params);
             opt.ub = UL_COMMON .* ones(1, opt.num_params);
+            opt.ub(2) = 1.0;        % f parameter is a fraction ranging from o to 1 in DD model
             % opt.ub([2, 3]) = UL_langmuir_constant .* BET_tol;
             % opt.guess = [sat_loading_guess, K_guess, C_guess, n_guess];
             opt.guess = [SAT_LOADING_GUESS, 0.0, 0.0, 0.0,...
