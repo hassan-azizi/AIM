@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/AIM_logo.png" alt="Logo" width="400"/>
+  <img src="src/AIM_logo.png" alt="Logo" width="300"/>
 </p>
 
 AIM
