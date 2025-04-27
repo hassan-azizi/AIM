@@ -2,6 +2,8 @@
   <img src="src/AIM_logo.png" alt="Logo" width="400"/>
 </p>
 
+<h1 align="center">AIM</h1>
+
 AIM
 =========================
 
