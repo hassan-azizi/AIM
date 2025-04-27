@@ -4,9 +4,6 @@
 
 <h1 align="center" style="font-size:60px;">AIM</h1>
 
-AIM
-=========================
-
 AIM is a collection of MATLAB based Graphical User Interface (GUI) tools for adsorption isotherm based fixed bed modelling. AIM modules provide an integrated workflow for adsorpion isoterm fitting, isosteric heat of adsorption estimation, mixture isotherm prediction, and multicomponent adsorption breakthrough simulation. AIM has been developed at [Digital Chemistry and Engineering Lab](https://sites.google.com/view/dcel-lab), Pusan National University.
 
 Primary features of AIM include
