@@ -113,7 +113,23 @@ This folder contains all the figures, the corresponding data, and MATLAB code us
 │   └── Fig 12.png
 ├── Figure 13
 │   ├── Data and Code
-│   │   ├── Case_study_2.m
+│   │   ├── 2-1
+│   │   │   ├── 1.svg
+│   │   │   ├── 2.svg
+│   │   │   └── 3.svg
+│   │   ├── 3-2
+│   │   │   ├── 1.svg
+│   │   │   ├── 2.svg
+│   │   │   └── 3.svg
+│   │   ├── 5-2
+│   │   │   ├── 1.svg
+│   │   │   ├── 2.svg
+│   │   │   └── 3.svg
+│   │   ├── 7-2
+│   │   │   ├── 1.svg
+│   │   │   ├── 2.svg
+│   │   │   └── 3.svg
+│   │   ├── Case_study.m
 │   │   ├── Data
 │   │   │   ├── Isotherm_273.csv
 │   │   │   ├── Isotherm_298.csv
@@ -121,9 +137,6 @@ This folder contains all the figures, the corresponding data, and MATLAB code us
 │   │   │   ├── heat_273.csv
 │   │   │   ├── heat_298.csv
 │   │   │   └── heat_323.csv
-│   │   ├── Q_ads_CO2.svg
-│   │   ├── Q_ads_full_range.svg
-│   │   ├── isotherm_CO2_ln.svg
 │   │   └── isotherm_fit_opt.m
 │   └── Fig 13.png
 ├── Figure 14
@@ -135,14 +148,19 @@ This folder contains all the figures, the corresponding data, and MATLAB code us
 │   │   │   ├── a_{2}.svg
 │   │   │   ├── a_{3}.svg
 │   │   │   ├── a_{4}.svg
-│   │   │   ├── a_{5}.svg
 │   │   │   ├── b_{0}.svg
-│   │   │   ├── b_{1}.svg
-│   │   │   └── b_{2}.svg
-│   │   ├── CALF-20_margpos.csv
-│   │   ├── CALF-20_margpos_bin_edges.csv
-│   │   ├── CALF-20_params_bound.csv
-│   │   ├── GCMC_CALF_20_UA.m
+│   │   │   └── b_{1}.svg
+│   │   ├── CALF_20_UA_Virial.m
+│   │   ├── Data
+│   │   │   ├── Isotherm_273.csv
+│   │   │   ├── Isotherm_298.csv
+│   │   │   ├── Isotherm_323.csv
+│   │   │   ├── bounds.csv
+│   │   │   ├── heat_273.csv
+│   │   │   ├── heat_298.csv
+│   │   │   ├── heat_323.csv
+│   │   │   ├── marg_pos.csv
+│   │   │   └── marg_pos_bin_edges.csv
 │   │   └── plot_posteriors.m
 │   └── Fig 14.png
 ├── Figure 15
@@ -155,5 +173,7 @@ This folder contains all the figures, the corresponding data, and MATLAB code us
 │   │   ├── plot_composition.m
 │   │   └── plot_temperature.m
 │   └── Fig 15.png
+├── Scheme 1
+│   └── Scheme 1.png
 ├── READme.md
 ```
