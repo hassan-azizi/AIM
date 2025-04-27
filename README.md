@@ -16,7 +16,7 @@ Primary features of AIM include
 **Developed by:** [Muhammad Hassan](https://github.com/hassan-azizi)
 
 AIM Modules
-========
+======
 - **IsoFit**: Single temperature isotherm fitting using various isotherm models
    * Single and dual-site Langmuir
    * Single and dual-site Langmuir-Freundlich
