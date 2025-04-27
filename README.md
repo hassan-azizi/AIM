@@ -2,7 +2,7 @@
   <img src="src/AIM_logo.png" alt="Logo" width="400"/>
 </p>
 
-<h1 align="center" style="font-size:52px;">AIM</h1>
+<h1 align="center" style="font-size:60px;">AIM</h1>
 
 AIM
 =========================
