@@ -1,6 +1,7 @@
 <p align="center">
   <img src="src/AIM_logo.png" alt="Logo" width="200"/>
 </p>
+
 AIM
 =========================
 
