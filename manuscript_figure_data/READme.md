@@ -1,6 +1,4 @@
-# AIM: User-friendly GUI Program for Isotherm Fitting, Mixture Prediction, Isosteric Heat of Adsorption Estimation, and Breakthrough Simulation
-
-This folder contains the figures, the data, and the MATLAB code required to plot the figures in the manuscript:
+This folder contains the figures, the data, and the MATLAB code required to plot the figures in the manuscript:<br>
 "AIM: A User-friendly GUI Workflow program for Isotherm Fitting, Mixture Prediction, Isosteric Heat of Adsorption Estimation, and Breakthrough Simulation"<br>
 Muhammad Hassan, Sunghyun Yoon, Yu Chen, Pilseok Kim, Hongryeol Yun, Youn-Sang Bae, Chung-Yul Yoo, Dong-Yeun Koh, Chang-Seop Hong, Ki-Bong Lee, Yongchul G. Chung
 <br>Journal: ####<br>
