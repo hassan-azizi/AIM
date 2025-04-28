@@ -1,28 +1,30 @@
-% marg_pos = readmatrix("CALF-20-CO2-case/CALF-20_margpos.csv");
-% marg_pos_bin_edges = readmatrix("CALF-20-CO2-case/CALF-20_margpos_bin_edges.csv");
-% bounds = readmatrix("CALF-20-CO2-case/CALF-20_params_bound.csv");
-marg_pos = readmatrix("CALF-20_margpos.csv");
-marg_pos_bin_edges = readmatrix("CALF-20_margpos_bin_edges.csv");
-bounds = readmatrix("CALF-20_params_bound.csv");
+marg_pos = readmatrix("Data/marg_pos.csv");
+marg_pos_bin_edges = readmatrix("Data/marg_pos_bin_edges.csv");
+bounds = readmatrix("Data/bounds.csv");
 
 lb = bounds(1, :);
 ub = bounds(2, :);
 np = size(marg_pos, 1);
-num_a_params = 6;
-param_names = ["a_{0}", "a_{1}", "a_{2}", "a_{3}", "a_{4}", "a_{5}",...
-                "b_{0}", "b_{1}", "b_{2}", "b_{3}"];
-% param_names = ["m_b", "b", "m_d", "d"];
-param_units = ["K", "K(mol/kg)^{-1}", "K(mol/kg)^{-2}", "K(mol/kg)^{-3}", "K(mol/kg)^{-4}", "K(mol/kg)^{-5}",...
-                "-", "K(mol/kg)^{-1}", "K(mol/kg)^{-2}", "K(mol/kg)^{-3}"];
+num_a_params = 5;
+param_names = ["a_{0}", "a_{1}", "a_{2}", "a_{3}", "a_{4}",...
+                "b_{0}", "b_{1}"];
+param_units = ["K", "K mol^{-1}", "K mol^{-2}", "K mol^{-3}", "K mol^{-4}",...
+                "-", "-"];
+scale = 0.85;
+max_scale = 1.1;
 
-leg_size = 12;
-label_size = 18;
+leg_size = 20*scale;
+label_size = 26*scale;
 idx_scale = [];
 scale_values = [10^4, 10^6];
 
 
-theta_nominal =[-4.69E+03	2.63E+02	-8.55E+02	5.36E+02	-1.23E+02	9.441289...
-                21.99285	0.688322	0.120564];
+% theta_nominal = [2.756811, 8.026405e-04, 3.191820, 4.656369e-06];
+% theta_nominal = [-4.845673e+03, 9.654406e02, -1.223853e03, 5.838586e02, -1.221194e2, 9.281350,...
+%                  22.501361, -1.547888, 1.277603, -0.149109];
+% theta_nominal =[-4.69E+03	2.63E+02	-8.55E+02	5.36E+02	-1.23E+02	9.441289...
+%                 21.99285	0.688322	0.120564];
+theta_nominal = [-4.583398e+03 -6.003066e+02 3.478569e+02 -75.211621 5.871371 21.792407 1.098147];
 
 hist_values = marg_pos;
 dist_params_norm = zeros(size(marg_pos, 1), 2);
@@ -35,7 +37,7 @@ end
 
 for p=1:np-1
     fig1 = figure(p);
-    fig1.Position = [100, 50, 500, 375];
+    fig1.Position = [100, 50, 560, 375];
     % subplot(3, 2, p);
     hold on
     % Plot marginal posterior histogram
@@ -78,7 +80,7 @@ for p=1:np-1
     hold off
     % grid on
     ax.FontName = 'Deja Vu Sans';
-    ax.FontSize = label_size;
+    ax.FontSize = 22*scale;
     ax.GridAlpha = 0.3;
     box on;
     saveas(fig1, sprintf('CALF-20-CO2-case/%s.svg', param_names(p)))
@@ -109,11 +111,11 @@ set(ax, 'YTick', []);
 hold off
 % grid on
 ax.FontName = 'Deja Vu Sans';
-ax.FontSize = label_size;
+ax.FontSize = 22*scale;
 ax.GridAlpha = 0.3;
 saveas(gcf, sprintf('CALF-20-CO2-case/Q_ads.svg'))
 box on
-close all;
+% close all;
 
 %% Miscellenous Function
 function fitted_params = fit_norm(bin_edges, bin_count, num_params)

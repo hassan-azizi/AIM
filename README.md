@@ -1,7 +1,11 @@
-AIM
-=========================
+<p align="center">
+  <img src="src/AIM_logo.png" alt="Logo" width="300"/>
+</p>
 
-AIM is a collection of MATLAB based Graphical User Interface (GUI) tools for adsorption isotherm based fixed bed modelling. AIM modules provide an integrated workflow for adsorpion isoterm fitting, isosteric heat of adsorption estimation, mixture isotherm prediction, and multicomponent adsorption breakthrough simulation. AIM has been developed at Molecular Thermodynamics and Advanced Processes Lab [cmcp-group](https://sites.google.com/view/mtap-lab), Pusan National University.
+AIM
+========
+
+AIM is a collection of MATLAB based Graphical User Interface (GUI) tools for adsorption isotherm based fixed bed modelling. AIM modules provide an integrated workflow for adsorpion isoterm fitting, isosteric heat of adsorption estimation, mixture isotherm prediction, and multicomponent adsorption breakthrough simulation. AIM has been developed at [Digital Chemistry and Engineering Lab](https://sites.google.com/view/dcel-lab), Pusan National University.
 
 Primary features of AIM include
 - Integrated workflow within modules
@@ -12,7 +16,7 @@ Primary features of AIM include
 **Developed by:** [Muhammad Hassan](https://github.com/hassan-azizi)
 
 AIM Modules
-========
+======
 - **IsoFit**: Single temperature isotherm fitting using various isotherm models
    * Single and dual-site Langmuir
    * Single and dual-site Langmuir-Freundlich
@@ -46,7 +50,7 @@ Installation
 - **Windows users**:
    <br>Please use the 'AIM_Installer.exe' file located in the [bin](./bin/) directory.
 
-- **Linux and macOS users**
+- **Linux and macOS users**:
    <br>Users of Linux and macOS need to compile the app for redistirbution.
    <br>Please follow the instruction given in the [READme](./build/READme.md) file located in the build directory for compilation.
 

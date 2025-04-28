@@ -4,9 +4,9 @@ clear;
 %
 %% Isotherm Data Processing
 % CALF-20 CO2 Data
-data_1 = readmatrix("Isotherm Data/CALF-20/Isotherm_273.csv");
-data_2 = readmatrix("Isotherm Data/CALF-20/Isotherm_298.csv");
-data_3 = readmatrix("Isotherm Data/CALF-20/Isotherm_323.csv");
+data_1 = readmatrix("Data/Isotherm_273.csv");
+data_2 = readmatrix("Data/Isotherm_298.csv");
+data_3 = readmatrix("Data/Isotherm_323.csv");
 
 temperatures = [273, 298, 323];
 
@@ -35,32 +35,31 @@ Loading(idx) = [];
 Pressure_exp(idx) = [];
 temperature_data_m(idx) = [];
 
-Pressure_exp = Pressure_exp(1:2:end);
-Loading = Loading(1:2:end);
-temperature_data_m = temperature_data_m(1:2:end);
+Pressure_exp = Pressure_exp(1:1:end);
+Loading = Loading(1:1:end);
+temperature_data_m = temperature_data_m(1:1:end);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Nominal parameters, obtained from AIM HeatFit
-% theta_nom_orig = [-4545.6310, 355.8787, -454.9651, -27.7425, 145.6276, -53.1711, 7.3132, -0.3393,...
-%                     21.5519, -0.4417, 0.9066, -0.1107];
-% num_a_params = 8;
-% param_names = ["a_{0}", "a_{1}", "a_{2}", "a_{3}", "a_{4}", "a_{5}", "a_{6}", "a_{7}",...
-%                 "b_{0}", "b_{1}", "b_{2}", "b_{3}"];
+% num_a_params = 2;
+% num_a_params = 3;
+num_a_params = 5;
+% num_a_params = 7;
 
-% theta_nom_orig = [-4.845673e+03, 9.654406e02, -1.223853e03, 5.838586e02, -1.221194e2, 9.281350,...
-%                  22.501361, -1.547888, 1.277603, -0.149109];
+% theta_nom_orig = [-5.260627e+03 3.276345e+02 23.526061];
+% theta_nom_orig = [-4.584696e+03 -2.396726e+02 41.655948 21.617160 1.235856];
+theta_nom_orig =[-4.583398e+03 -6.003066e+02 3.478569e+02 -75.211621 5.871371...
+                    21.792407 1.098147];
+% theta_nom_orig = [-4.504466e+03 -1.700262e+02 -2.260201e+02 72.781164 38.563085 -16.423412 1.550770...
+%                     21.419482 1.274859];
 
-% After resdiual function modification
-theta_nom_orig = [-4.78E+03, 7.65E+02, -1.11E+03, 5.56E+02, -1.19E+02, 9.079949,...
-                    22.294813, -1.031967, 1.055692,-0.124349];
-% theta_nom_orig =[-4.69E+03	2.63E+02	-8.55E+02	5.36E+02	-1.23E+02	9.441289...
-%                 21.99285	0.688322	0.120564];
-
-theta_nom_orig =[-4.686E+03	2.63E+02	-8.55E+02	5.36E+02	-1.23E+02	9.441289...
-                21.99285	0.688322	0.120564];
-
-num_a_params = 6;
-param_names = ["a_{0}", "a_{1}", "a_{2}", "a_{3}", "a_{4}", "a_{5}",...
-                "b_{0}", "b_{1}", "b_{2}", "b_{3}"];
+% param_names = ["a_{0}", "a_{1}",...
+%                 "b_{0}"];
+% param_names = ["a_{0}", "a_{1}", "a_{2}",...
+%                 "b_{0}", "b_{1}"];
+param_names = ["a_{0}", "a_{1}", "a_{2}", "a_{3}", "a_{4}",...
+                "b_{0}", "b_{1}"];
+% param_names = ["a_{0}", "a_{1}", "a_{2}", "a_{3}", "a_{4}", "a_{5}", "a_{6}",...
+%                 "b_{0}", "b_{1}"];
 
 
 theta_nominal = abs(theta_nom_orig);
@@ -101,7 +100,7 @@ theta_nominal = [theta_nominal, error_sigma];
 % title("Error using Nominal Parameters");
 %
 %% Bays Analysis and Joint Posterior Distribution
-N = 1e08;                           % Number of MC trials
+N = 1e07;                           % Number of MC trials
 np = length(theta_nominal);         % Number of parameters
 
 % Bound width of MC samples in % of nominal values.
@@ -110,20 +109,20 @@ np = length(theta_nominal);         % Number of parameters
 delta_params = zeros(size(theta_nominal)) + 3;
 for s=1:np
     if theta_nominal(s) < 10
-        delta_params(s) = 10;
+        delta_params(s) = 20;
     elseif theta_nominal(s) < 100
-        delta_params(s) = 3;
+        delta_params(s) = 10;
     elseif theta_nominal(s) < 1000
-        delta_params(s) = 3;
+        delta_params(s) = 5;
     elseif theta_nominal(s) < 2000
-        delta_params(s) = 3;
+        delta_params(s) = 5;
     else
-        delta_params(s) = 3;
+        delta_params(s) = 5;
     end
 end
 
-% delta_params = [10, 10, 10, 10, 10, 10, 10, 10,...
-%                 10, 10, 10, 10, 10].* 0.5;
+% delta_params = [3, 13, 13, 17, 20, 2.5, 18, 10];
+delta_params = [4, 15, 15, 19, 23, 3.2, 23, 10];
 
 % Create mask for negative model parameters
 neg_params = ones(size(theta_nominal));
