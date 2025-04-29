@@ -62,7 +62,7 @@ Muhammad Hassan, Sunghyun Yoon, Yu Chen, Pilseok Kim, Hongryeol Yun, Youn-Sang B
 Journal: ####<br>
 URL: ####
 
-## License
+# License
 This project is licensed under the GNU General Public License v2 (GPLv2).  
 See the [LICENSE](./LICENSE) file for details.
 
