@@ -1,46 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="transition-all">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AIM</title>
+  <title>Software Modules Overview</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/common.js" defer></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-<body class="flex min-h-screen bg-gray-50 text-gray-800">
+<body class="bg-gray-50 dark:bg-gray-900 dark:text-white text-gray-800 p-10 transition-all">
 
-  <!-- Sidebar -->
-  <aside class="w-64 bg-white border-r border-gray-200 p-4 fixed h-screen overflow-y-auto">
-    <h1 class="text-2xl font-bold mb-6">AIM</h1>
-    <nav class="space-y-4">
-      <a href="#isotherm" class="block text-gray-700 hover:text-blue-600">IsoFit</a>
-      <a href="#multi-temp" class="block text-gray-700 hover:text-blue-600">HeatFit</a>
-      <a href="#mixture" class="block text-gray-700 hover:text-blue-600">MixPred</a>
-      <a href="#breakthrough" class="block text-gray-700 hover:text-blue-600">BreakLab</a>
-    </nav>
-  </aside>
+  <div class="flex justify-between items-center mb-10">
+    <h1 class="text-3xl font-bold text-blue-700 dark:text-blue-300">Software Modules</h1>
+    <button onclick="toggleDarkMode()" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Toggle Dark Mode</button>
+  </div>
 
-  <!-- Main content -->
-  <main class="ml-64 p-8 w-full">
-    <section id="isotherm" class="mb-12">
-      <h2 class="text-xl font-semibold mb-2">Isotherm Fitting</h2>
-      <p class="text-gray-600">This module fits adsorption isotherms (e.g., Langmuir, Freundlich) to experimental single-component data.</p>
-    </section>
-
-    <section id="multi-temp" class="mb-12">
-      <h2 class="text-xl font-semibold mb-2">Isotherm Fitting at Multiple Temperatures</h2>
-      <p class="text-gray-600">This module fits isotherm models across multiple temperatures and estimates thermodynamic parameters like adsorption enthalpy.</p>
-    </section>
-
-    <section id="mixture" class="mb-12">
-      <h2 class="text-xl font-semibold mb-2">Mixture Isotherm Calculation</h2>
-      <p class="text-gray-600">This module computes multicomponent adsorption equilibria using Ideal Adsorbed Solution Theory (IAST) or other models.</p>
-    </section>
-
-    <section id="breakthrough" class="mb-12">
-      <h2 class="text-xl font-semibold mb-2">Breakthrough Simulation</h2>
-      <p class="text-gray-600">This module simulates breakthrough curves for adsorption columns using input from isotherm data and operational parameters.</p>
-    </section>
-  </main>
-
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+    <a href="isotherm.html" class="block bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg border hover:border-blue-500">
+      <h2 class="text-xl font-semibold text-blue-700 dark:text-blue-300">Isotherm Fitting</h2>
+      <p>Fit adsorption isotherm models to single-component data.</p>
+    </a>
+    <a href="multi-temp.html" class="block bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg border hover:border-blue-500">
+      <h2 class="text-xl font-semibold text-blue-700 dark:text-blue-300">Isotherm @ Multiple Temps</h2>
+      <p>Estimate thermodynamics using temperature-dependent isotherms.</p>
+    </a>
+    <a href="mixture.html" class="block bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg border hover:border-blue-500">
+      <h2 class="text-xl font-semibold text-blue-700 dark:text-blue-300">Mixture Isotherm</h2>
+      <p>Predict multicomponent equilibrium via IAST or competitive models.</p>
+    </a>
+    <a href="breakthrough.html" class="block bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg border hover:border-blue-500">
+      <h2 class="text-xl font-semibold text-blue-700 dark:text-blue-300">Breakthrough Simulation</h2>
+      <p>Model column dynamics and generate breakthrough curves.</p>
+    </a>
+  </div>
 </body>
 </html>
