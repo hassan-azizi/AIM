@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" class="transition-all">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Isotherm Fitting</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/common.js" defer></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 dark:text-white text-gray-800 p-10 transition-all max-w-3xl mx-auto">
+
+  <div class="flex justify-between items-center mb-6">
+    <a href="index.html" class="text-blue-600 dark:text-blue-300 hover:underline">&larr; Back</a>
+    <button onclick="toggleDarkMode()" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Toggle Dark Mode</button>
+  </div>
+
+  <h1 class="text-3xl font-bold text-blue-700 dark:text-blue-300 mb-4">Isotherm Fitting</h1>
+
+  <p class="mb-4 leading-relaxed">
+    This module fits classical isotherm models like Langmuir and Freundlich:
+  </p>
+
+  <ul class="list-disc pl-5 space-y-2">
+    <li>Curve fitting using nonlinear least squares</li>
+    <li>Graphical and residual analysis</li>
+    <li>Parameter export</li>
+  </ul>
+
+  <div class="mt-6 bg-white dark:bg-gray-800 p-4 rounded shadow">
+    <p>Example equation:</p>
+    <p class="text-lg mt-2">$$ q = \frac{q_{\text{max}} b C}{1 + b C} $$</p>
+  </div>
+</body>
+</html>
