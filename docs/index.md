@@ -2,7 +2,7 @@
 title: AIM Overview
 ---
 
-# My Software Modules
+# AIM Modules
 
 <style>
 .tab {
