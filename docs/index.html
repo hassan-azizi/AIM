@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software Modules</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex min-h-screen bg-gray-50 text-gray-800">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white border-r border-gray-200 p-4 fixed h-screen overflow-y-auto">
+    <h1 class="text-2xl font-bold mb-6">Modules</h1>
+    <nav class="space-y-4">
+      <a href="#isotherm" class="block text-gray-700 hover:text-blue-600">Isotherm Fitting</a>
+      <a href="#multi-temp" class="block text-gray-700 hover:text-blue-600">Isotherm @ Multiple Temps</a>
+      <a href="#mixture" class="block text-gray-700 hover:text-blue-600">Mixture Isotherm</a>
+      <a href="#breakthrough" class="block text-gray-700 hover:text-blue-600">Breakthrough Simulation</a>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <main class="ml-64 p-8 w-full">
+    <section id="isotherm" class="mb-12">
+      <h2 class="text-xl font-semibold mb-2">Isotherm Fitting</h2>
+      <p class="text-gray-600">This module fits adsorption isotherms (e.g., Langmuir, Freundlich) to experimental single-component data.</p>
+    </section>
+
+    <section id="multi-temp" class="mb-12">
+      <h2 class="text-xl font-semibold mb-2">Isotherm Fitting at Multiple Temperatures</h2>
+      <p class="text-gray-600">This module fits isotherm models across multiple temperatures and estimates thermodynamic parameters like adsorption enthalpy.</p>
+    </section>
+
+    <section id="mixture" class="mb-12">
+      <h2 class="text-xl font-semibold mb-2">Mixture Isotherm Calculation</h2>
+      <p class="text-gray-600">This module computes multicomponent adsorption equilibria using Ideal Adsorbed Solution Theory (IAST) or other models.</p>
+    </section>
+
+    <section id="breakthrough" class="mb-12">
+      <h2 class="text-xl font-semibold mb-2">Breakthrough Simulation</h2>
+      <p class="text-gray-600">This module simulates breakthrough curves for adsorption columns using input from isotherm data and operational parameters.</p>
+    </section>
+  </main>
+
+</body>
+</html>
