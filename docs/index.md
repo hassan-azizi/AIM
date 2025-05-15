@@ -26,22 +26,27 @@ title: AIM Overview
 </style>
 
 <div>
-  <button class="tab-button" onclick="showTab('mod1')">Module 1</button>
-  <button class="tab-button" onclick="showTab('mod2')">Module 2</button>
-  <button class="tab-button" onclick="showTab('mod3')">Module 3</button>
+  <button class="tab-button" onclick="showTab('mod1')">IsoFit</button>
+  <button class="tab-button" onclick="showTab('mod2')">HeatFit</button>
+  <button class="tab-button" onclick="showTab('mod3')">MixPred</button>
+  <button class="tab-button" onclick="showTab('mod4')">BreakLab</button>
 </div>
 
 <div id="mod1" class="tab-content">
   <h3>Isotherm Fitting</h3>
-  <p>This module fits adsorption isotherms to experimental data...</p>
+  <p>This module fits adsorption isotherms to single temperture isotherm data</p>
 </div>
 <div id="mod2" class="tab-content">
-  <h3>Mixture Isotherm</h3>
-  <p>This module calculates multicomponent adsorption using IAST...</p>
+  <h3>Multi-temperature Isotherm Fitting and Isosteric Heat of Prediction</h3>
+  <p>This module fits adsorption isotherm to multiple temperature isotherm data and also predicts isosteric heat of adsorption using Clausius-Clapeyron and Virial equation</p>
 </div>
 <div id="mod3" class="tab-content">
+  <h3>Mixture Isotherm Prediction</h3>
+  <p>This module predicts mixture adsorption isotherm for the given compositions using Ideal Adsorption Solution Theory (IAST) and Extended Dual-site Langmuir (EDSL) model</p>
+</div>
+<div id="mod4" class="tab-content">
   <h3>Breakthrough Simulation</h3>
-  <p>This module simulates packed bed performance for mixtures...</p>
+  <p>This module simulates Isothermal/Non-isothermal, Non-isobaric fixed bed adsorption breakthrough for up to 5 components</p>
 </div>
 
 <script>
