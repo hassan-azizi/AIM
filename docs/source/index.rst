@@ -26,13 +26,14 @@ Primary featues of AIM include:
 
 .. toctree::
    :maxdepth: 2
-   :titlesonly:
-   :caption: Contents:
+   :caption: Contents
 
    AIM Modules
    Installation
    Tutorials
    Citation
+
+
 
 Indices
 =======

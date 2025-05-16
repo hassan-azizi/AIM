@@ -6,24 +6,32 @@
 IsoFit
 ===============================
 
-**AIM** consists of 4 modules:
+The isotherm models suported in **IsoFit** are:
 
-1. IsoFit
-2. HeatFit
-3. MixPred
-4. BreakLab
- 
-| **IsoFit**: Fit various isotherm models to single temperature isotherm data.
-| **HeatFit**: Fit various isotherm models to multi-temperature isotherm data and predict isosteric heat of adsorption using Clausius-Clapeyron or Virial equation.
-| **MixPred**: Predict mixture isotherm using Ideal Adsorbed Solution Theory (IAST) and Extended Dual-site Langmuir (EDSL) models.
-| **BreakLab**: Predict multicomponent isothermal/nonisothermal breakthrough curves for fixed bed.
+.. list-table:: IsoFit Isotherm Models
+   :header-rows: 1
+   :widths: auto
 
-.. image:: images/AIM_modules.png
-   :width: 700
-   :alt: AIM_logo
-   :align: center
-   
--------
+   * - Isotherm Model
+     - Isotherm Equation
+     - Fitting Parameters
+   * - Langmuir
+     - :math:`q = \frac{q_\mathrm{max} b c}{1 + b c}`
+     - :math:`q_\mathrm{max},\ b`
+   * - Freundlich
+     - :math:`q = K c^{1/n}`
+     - :math:`K,\ n`
+   * - Toth
+     - :math:`q = \frac{q_\mathrm{max} b c}{\left(1 + (b c)^t\right)^{1/t}}`
+     - :math:`q_\mathrm{max},\ b,\ t`
+   * - Sips
+     - :math:`q = \frac{q_\mathrm{max} (b c)^n}{1 + (b c)^n}`
+     - :math:`q_\mathrm{max},\ b,\ n`
+
+---------------------------------------
+.. note:: The isotherm models are fitted using the Levenberg-Marquardt algorithm.
+   The fitting parameters are estimated using the initial guess values provided by the user.
+   The initial guess values are set to 1.0 for all parameters if not specified.
 
 The isotherm fitting results from **IsoFit** and **HeatFit** can be directly loaded into **MixPred** and **BreakLab** modules,
 providing seamless integration.
