@@ -1,0 +1,49 @@
+.. AIM Documentation documentation master file, created by
+   sphinx-quickstart on Fri May 16 14:38:34 2025.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+AIM Overview
+===============================
+
+.. image:: images/AIM_logo.png
+   :width: 500
+   :alt: AIM_logo
+   :align: center
+
+-------
+
+**AIM** (Adsorption Inetrgated Modules) is a collection of MATLAB based GUI modules for adsorption isotherm based fixed bed process modelling. 
+**AIM** modules provide an integrated workflow for adsorption isotherm fitting at single and multiple temperatures, isosteric heat of adsorption estimation, mixture adsorption isotherm
+predcition, and multicomponent fixed bed breakthrough simulation.
+
+Primary featues of AIM include:
+
+* Integrated workflow within modules
+* GUI environemnet to facilaitate data input/output, model seelction, and simulation type selection
+* Dynamic plots for pressure, loading, temperature, and composition
+* Data and graphics export in different formats
+
+.. toctree::
+   :maxdepth: 2
+   :titlesonly:
+   :caption: Contents:
+
+   AIM Modules
+   Installation
+   Tutorials
+   Citation
+
+Indices
+=======
+* :ref:`genindex`
+* :ref:`search`
+
+-----------------
+
+License
+=======
+| Copyright (C) 2025 Muhammad Hassan, MTAP Research Group 2025-04-29.
+| This project is licensed under the GNU General Public License v2 (GPLv2).
+| See the `License <https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html>`_
+
