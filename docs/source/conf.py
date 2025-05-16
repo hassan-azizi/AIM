@@ -37,6 +37,6 @@ mathjax_path = 'https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static', 'images']
-
+html_logo = 'images/AIM_logo.png'
 # html_theme_options = { 'style_nav_header_background': '#BED2E0',
 #                       'logo_only': True}
