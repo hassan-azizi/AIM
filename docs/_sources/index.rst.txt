@@ -32,11 +32,11 @@ AIM software and the associated source code are open-source and freely avaibale 
    :caption: Contents
 
    AIM Modules
+   Input-Output Data Files
    Installation
    Tutorials
-   Input-Output Data Files
    Citation
-
+   
 License
 =======
 | Copyright (C) 2025 Muhammad Hassan, MTAP Research Group 2025-04-29.
@@ -47,8 +47,6 @@ Maintainers
 ===========
 
 * Muhammad Hassan
-* Sunghyun Yoon
-* Yongchul Chung
 
 For any issues or questions, please reach us at hassanaz.14(at)outlook(dot)com.
 

@@ -17,7 +17,7 @@ MixPred
 -------
 
 The isotherm fitting results from **IsoFit** and **HeatFit** can be directly loaded into **MixPred** module,
-and the user can pecify the desired pressure range and mixture composition to calculate the mixture loadings. 
+and the user can specify the desired pressure range and mixture composition to calculate the mixture loadings. 
 
 Watch how to use **MixPred** :ref:`here <MixPred-label>`
 
@@ -47,7 +47,7 @@ Note that the EDSL model is thermodynamically consistent only when the saturatio
    q_{sat, 2, 1}=q_{sat, 2, 2}=q_{sat, 2, 3}= ... q_{sat, 2, N}
 
 .. note::
-   The EDSL model in **MixPred** is applicabale only when the isotherm of each individual component is described using the Langmuir isotherm model.
+   The EDSL model in **MixPred** is applicable only when the isotherm of each individual component is described using the Langmuir isotherm model.
 
 2. Ideal Adsorbed Solution Theory (IAST)
 ---------------------------------------------

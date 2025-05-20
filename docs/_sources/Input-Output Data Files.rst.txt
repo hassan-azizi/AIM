@@ -23,6 +23,7 @@ to users with diverse backgrounds. In this section, we outline the supported inp
 --------------
 
 IsoFit and HeatFit can import isotherm data from
+
 * General input data files in the following formats: \*.csv, \*.txt, \*.xlsx, \*.dat.
 * Adsorption Information Format (AIF).
 
