@@ -3,11 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-AIM Overview
+AIM
 ===============================
 
 .. image:: images/AIM_logo.png
-   :width: 500
+   :width: 400
+   :height: 400
    :alt: AIM_logo
    :align: center
 
@@ -24,7 +25,7 @@ Primary featues of AIM include:
 * Dynamic plots for pressure, loading, temperature, and composition
 * Data and graphics export in different formats
 
-AIM software and the associated source code are opensource and freely avaibale at our GitHub repository `AIM Repository <https://github.com/mtap-research/AIM>`_.
+AIM software and the associated source code are open-source and freely avaibale at our GitHub repository `AIM repository <https://github.com/mtap-research/AIM>`_.
 
 .. toctree::
    :maxdepth: 2
@@ -33,13 +34,14 @@ AIM software and the associated source code are opensource and freely avaibale a
    AIM Modules
    Installation
    Tutorials
+   Input-Output Data Files
    Citation
 
 License
 =======
 | Copyright (C) 2025 Muhammad Hassan, MTAP Research Group 2025-04-29.
 | This project is licensed under the GNU General Public License v2 (GPLv2).
-| See the `License <https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html>`_
+| See the `GPLv2 license <https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html>`_
 
 Maintainers
 ===========

@@ -52,7 +52,7 @@ Note that the EDSL model is thermodynamically consistent only when the saturatio
 2. Ideal Adsorbed Solution Theory (IAST)
 ---------------------------------------------
 
-IAST is a thermodynamic framework proposed by Mayers and Prausnitz [#IAST_ref]_ to calculate the mixture isotherms using pure component isotherm. The IAST is based on three fundamental assumptions:
+IAST is a thermodynamic framework to calculate the mixture isotherms using pure component isotherm. The IAST is based on three fundamental assumptions:
 
 * The surface area of the adsorbent is equally accessible to all adsorbates.
 * The adsorbed phase is an ideal solution.
