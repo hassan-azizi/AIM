@@ -165,12 +165,22 @@ forms of balance equations.</p>
 <td><p>None</p></td>
 </tr>
 <tr class="row-odd"><td><p>Pressure (<span class="math notranslate nohighlight">\(P\)</span>)</p></td>
-<td><p><span class="math notranslate nohighlight">\(P|_{z=0} = f^*(v_{0})\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(P|_{z=0} = f^*(v|_{z=0})\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(P|_{z=L} = P_{0}\)</span></p></td>
 </tr>
 </tbody>
 </table>
 <p>* here <span class="math notranslate nohighlight">\(f\)</span> represents the Ergun equation. Only the velocity is specified at inlet and pressure is back calculated using Ergun equation.</p>
+<p>Together the balance equations and BCs consitute the mathematical model of BreakLab.</p>
+</section>
+</section>
+<section id="numerical-simulation">
+<h2>Numerical Simulation<a class="headerlink" href="#numerical-simulation" title="Link to this heading"></a></h2>
+<p>The model equations are nondimensionalized to resolve the steep gradients in the adsorption processes and faster convergence. The scaling variables
+used for nondimensionalization are as follows:</p>
+<div class="math notranslate nohighlight">
+\[\overline{P} = \frac{P}{P_{0}},\quad \overline{T} =\frac{T}{T_{0}},\quad \overline{v} = \frac{v}{v_{0}}, \quad \overline{x_{i}} = \frac{q_{i}}{q_{i0}},
+\quad {\xi} = \frac{z}{L},\quad \tau = \frac{tv_{0}}{L}, \quad \overline{T_{wall}} = \frac{T_{wall}}{T_{0}}\]</div>
 <div class="math notranslate nohighlight">
 \[\varepsilon_{t}\left(\frac{\partial y_{i}}{\partial t} + \frac{y_{i}}{P}\frac{\partial P}{\partial t} - \frac{y_{i}}{T}\frac{\partial T}{\partial t} \right)
  = D_{ax} \frac{\varepsilon_{b} T}{P}\frac{\partial}{\partial z} \left(\frac{P}{T} \frac{\partial y_{i}}{\partial z}\right)
@@ -190,7 +200,6 @@ forms of balance equations.</p>
 \[- \frac{\partial P}{\partial z} = \left(\frac{150 \mu}{4r_{p}^{2}}\right) \left(\frac{1-\varepsilon_{b}}{\varepsilon_{b}}\right)^2v + \left(\frac{1.75 \rho_{gas}}{2r_{p}} \left(\frac{1-\varepsilon_{b}}{\varepsilon_{b}}\right) \right)v^{2}\]</div>
 <div class="math notranslate nohighlight">
 \[\frac{\partial q}{\partial t} = k_{i}(q_{i}^{*} - q_{i})\]</div>
-</section>
 </section>
 </section>
 
