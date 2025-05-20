@@ -18,15 +18,12 @@ BreakLab
 | **MixPred**: Predict mixture isotherm using Ideal Adsorbed Solution Theory (IAST) and Extended Dual-site Langmuir (EDSL) models.
 | **BreakLab**: Predict multicomponent isothermal/nonisothermal breakthrough curves for fixed bed.
 
-.. image:: images/AIM_modules.png
-   :width: 700
-   :alt: AIM_logo
+.. image:: images/BreakLab.png
+   :width: 1000
+   :alt: BreakLab_logo
    :align: center
    
 -------
 
 The isotherm fitting results from **IsoFit** and **HeatFit** can be directly loaded into **MixPred** and **BreakLab** modules,
 providing seamless integration.
-
-
-
