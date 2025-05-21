@@ -17,7 +17,7 @@ IsoFit
 
 Watch how to use **IsoFit** :ref:`here <IsoFit-label>`
 
-1. Isotherm Models
+Isotherm Models
 -------------------------------
 
 **IsoFit** supports the following isotherm models:
@@ -71,7 +71,7 @@ Watch how to use **IsoFit** :ref:`here <IsoFit-label>`
 
 ---------------------------------------
 
-2. Isotherm Fitting
+Isotherm Fitting
 -------------------------------
 
 In **IsoFit**, isotherm fitting is done using non-linear 
