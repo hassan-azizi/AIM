@@ -112,7 +112,7 @@
 <li><p>The concentration, pressure, and temperature gradients in the axial directions are negligible.</p></li>
 </ul>
 <p>The material, energy and momentum balances are developed based on conservation of mass, energy, and momentum in the fixed bed, respectively.
-These balance equations consist of mole conservation of component <span class="math notranslate nohighlight">\(i\)</span>, overall mass balance, conservation of total momentum and the total energy
+The resulting balance equations are partial differential equations (PDEs) and consist of mole conservation of component <span class="math notranslate nohighlight">\(i\)</span>, overall mass balance, conservation of total momentum and the total energy
 of the system. The balance equations are summarised in table below. Please check the journal article for a more detailed discussion on deriving these
 forms of balance equations.</p>
 <table class="docutils align-default" id="id1">
@@ -133,13 +133,19 @@ forms of balance equations.</p>
 <td><p><span class="math notranslate nohighlight">\(\left(\rho_{b,ads}C_{p,ads} + \rho_{b,ads}C_{p,a}\sum_{i \in I} q_{i}\right)\frac{\partial T}{\partial t} = K_{z} \frac{\partial^{2}T}{\partial z^2} - \frac{C_{p,gas}\varepsilon_{b}}{R}\frac{\partial}{\partial z}(vP) + \rho_{b,ads} \left( \sum_{i \in I} \left(-\Delta H_{ads,i}\frac{\partial q_{i}}{\partial t}\right) - C_{p, a}T \sum_{i \in I}\frac{\partial q_{i}}{\partial t}\right) - \frac{2 h_{in}}{r_{in}} (T - T_{wall}) - \frac{C_{p,gas}\varepsilon_{t}}{R}\frac{\partial P}{\partial t}\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p>Linear Driving Force</p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{\partial q}{\partial t} = k_{i}(q_{i}^{*} - q_{i})\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{\partial q}{\partial t} = k_{i}(q_{mix, i}^{*} - q_{i})\)</span></p></td>
 </tr>
 <tr class="row-even"><td><p>Ergun Equations</p></td>
 <td><p><span class="math notranslate nohighlight">\(- \frac{\partial P}{\partial z} = \left(\frac{150 \mu}{4r_{p}^{2}}\right) \left(\frac{1-\varepsilon_{b}}{\varepsilon_{b}}\right)^2v + \left(\frac{1.75 \rho_{gas}}{2r_{p}} \left(\frac{1-\varepsilon_{b}}{\varepsilon_{b}}\right) \right)v^{2}\)</span></p></td>
 </tr>
 </tbody>
 </table>
+<p>Total porosity <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span> is calculated using the bulk and paricle porosities, <span class="math notranslate nohighlight">\(\varepsilon_{b}\)</span>, <span class="math notranslate nohighlight">\(\varepsilon_{p}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\varepsilon_{t} =  \varepsilon_{b} + (1-\varepsilon_{b})\varepsilon_{p}\]</div>
+<p>Axial dispersion coefficient <span class="math notranslate nohighlight">\(D_{ax}\)</span> is calculated using,</p>
+<div class="math notranslate nohighlight">
+\[D_{ax} = 0.7D_{m} + v_{0}r_{p}\]</div>
 <section id="boundary-conditions">
 <h3>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading"></a></h3>
 <p>BreakLab uses the Danckwerts boundary conditions (BCs) for dispersed plug flow system. The BCs are summarised in table below.</p>
@@ -153,7 +159,7 @@ forms of balance equations.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Mole fraction (<span class="math notranslate nohighlight">\(y_{i}\)</span>)</p></td>
-<td><p><span class="math notranslate nohighlight">\(D_{ax} \frac{\partial y_{i}}{\partial z}|_{z=0} = -v|_{z=0}(y_{i, 0} - y_{i}|_{z=0})\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(D_{ax} \frac{\partial y_{i}}{\partial z}|_{z=0} = -v|_{z=0}(y_{0, i} - y_{i}|_{z=0})\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\frac{\partial y_{i}}{\partial z}|_{z=L} = 0\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p>Temperature (<span class="math notranslate nohighlight">\(T\)</span>)</p></td>
@@ -181,7 +187,179 @@ used for nondimensionalization are as follows:</p>
 <div class="math notranslate nohighlight">
 \[\overline{P} = \frac{P}{P_{0}},\quad \overline{T} =\frac{T}{T_{0}},\quad \overline{v} = \frac{v}{v_{0}}, \quad \overline{x_{i}} = \frac{q_{i}}{q_{i0}},
 \quad {\xi} = \frac{z}{L},\quad \tau = \frac{tv_{0}}{L}, \quad \overline{T_{wall}} = \frac{T_{wall}}{T_{0}}\]</div>
-<p>To be continued…</p>
+<p>The dimensionless equations are derived using the scaled variables above. BreakLab employs finite volume method (FVM) along with weighted essentially non-oscillatory (WENO) scheme
+for spatial discretization of the above PDEs. Spatial discretization yields ordinary differential equations (ODEs). BreakLab uses MATLAB’s built in stiff ODE solver <em>ode15s</em> for solving the systems of ODEs.</p>
+</section>
+<section id="breakthrough-simulation-input">
+<h2>Breakthrough Simulation Input<a class="headerlink" href="#breakthrough-simulation-input" title="Link to this heading"></a></h2>
+<p>The table below summarises all the input properties and parameters required for running a breakthrough simulation in BreakLab.</p>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">BreakLab Inputs</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameters</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Remarks</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(T_{0}\)</span></p></td>
+<td><p>Feed gas temperature</p></td>
+<td><p><span class="math notranslate nohighlight">\(^\circ\mathrm{C}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(v_{0}\)</span></p></td>
+<td><p>Superficial feed gas velocity</p></td>
+<td><p><span class="math notranslate nohighlight">\(m/s\\\mathrm{OR}\\\mathrm{std. }\quad cm^3/min\)</span></p></td>
+<td><p>Standard state refers to <span class="math notranslate nohighlight">\(0\,^\circ\mathrm{C}\)</span> and <span class="math notranslate nohighlight">\(101325\,Pa\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(y_{0, i}\)</span></p></td>
+<td><p>Feed gas mole fraction of component <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(MW_{i}\)</span></p></td>
+<td><p>Molecular weight of component <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(kg\,mol^{-1}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(D_{m}\)</span></p></td>
+<td><p>Molecular diffusivity of gas</p></td>
+<td><p><span class="math notranslate nohighlight">\(m^{2}/s\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(K_{z}\)</span></p></td>
+<td><p>Thermal conductivity of gas</p></td>
+<td><p><span class="math notranslate nohighlight">\(W/m/^\circ\mathrm{C}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C_{p, gas}\)</span></p></td>
+<td><p>Specific heat capacity of gas</p></td>
+<td><p><span class="math notranslate nohighlight">\(J/mol/^\circ\mathrm{C}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mu\)</span></p></td>
+<td><p>Viscosity of gas</p></td>
+<td><p><span class="math notranslate nohighlight">\(Pa\,s\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(P_{0}\)</span></p></td>
+<td><p>Absolute pressure of adsorber column</p></td>
+<td><p><span class="math notranslate nohighlight">\(kPa\)</span></p></td>
+<td><p>This pressure refers to the pressure at the outlet of column.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(L\)</span></p></td>
+<td><p>Length of adsorber column</p></td>
+<td><p><span class="math notranslate nohighlight">\(m\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(D_{col}\)</span></p></td>
+<td><p>Inner diameter adsorber column</p></td>
+<td><p><span class="math notranslate nohighlight">\(m\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(h_{in}\)</span></p></td>
+<td><p>Inside heat transfer coefficient</p></td>
+<td><p><span class="math notranslate nohighlight">\(W/m^{2}/^\circ\mathrm{C}\)</span></p></td>
+<td><p>For running adiabatic breakthrough simulations specify this equal to <span class="math notranslate nohighlight">\(0.0\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(T_{wall}\)</span></p></td>
+<td><p>Temperature of adsorber wall</p></td>
+<td><p><span class="math notranslate nohighlight">\(^\circ\mathrm{C}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\rho_{b,ads}\)</span></p></td>
+<td><p>Bulk density of adsobent</p></td>
+<td><p><span class="math notranslate nohighlight">\(kg/m^3\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(D_{p}\)</span></p></td>
+<td><p>Diameter of adsorbent particles</p></td>
+<td><p><span class="math notranslate nohighlight">\(m\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\varepsilon_{b}\)</span></p></td>
+<td><p>Bulk porosity of adsorbent bed</p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\varepsilon_{p}\)</span></p></td>
+<td><p>Particle porosity of adsorbent particles</p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+<td><p>In case of not knowing the particle porosity specify this as <span class="math notranslate nohighlight">\(0.0\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(C_{p,ads}\)</span></p></td>
+<td><p>Specific heat capacity of adsorbent</p></td>
+<td><p><span class="math notranslate nohighlight">\(J/kg/^\circ\mathrm{C}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Isotherm parameters</p></td>
+<td><p>Isotherm parameters for the chosen isotherm model</p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+<td><p>Need to provide this for each component except for carrier gas. </p>
+<p>The number and types of isotherm model parameters depends on the</p>
+<p>chosen isotherm model. The isotherm model and parameters for the </p>
+<p>given component obtained from IsoFit or HeatFit can be imported as well.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\Delta H_{ads, i}\)</span></p></td>
+<td><p>Heat of adsorption of component <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(kJ/mol\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(T_{ref}\)</span></p></td>
+<td><p>Reference temperature used for isotherm fitting</p></td>
+<td><p><span class="math notranslate nohighlight">\(K\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(k_{i}\)</span></p></td>
+<td><p>Mass transfer coefficient of component <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/s\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="nomenclature">
+<h2>Nomenclature<a class="headerlink" href="#nomenclature" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line"><span class="math notranslate nohighlight">\(P =\)</span> Absolute pressure of the gas <span class="math notranslate nohighlight">\((Pa)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\overline{P} =\)</span> Dimensionless pressure of the gas <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(T =\)</span> Absolute Temperature of the gas <span class="math notranslate nohighlight">\((K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\overline{T} =\)</span> Dimensionless temperature of the gas <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(T_{wall} =\)</span> Wall temperature <span class="math notranslate nohighlight">\((K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\overline{T_{wall}} =\)</span> Dimensionless wall temperature <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(y_{i} =\)</span> Gas phase mole fraction of component <span class="math notranslate nohighlight">\(i\)</span> <span class="math notranslate nohighlight">\((Pa)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(q_{i} =\)</span> Adsorption loading of component <span class="math notranslate nohighlight">\(i\)</span> <span class="math notranslate nohighlight">\((mol/kg)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\overline{x_{i}} =\)</span> Dimensionless adsorption loading of component <span class="math notranslate nohighlight">\(i\)</span> <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(q_{i}^{*} =\)</span> Equilibrium adsorption loading of component <span class="math notranslate nohighlight">\(i\)</span>  <span class="math notranslate nohighlight">\((mol/kg)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(L =\)</span> Adsorber column length <span class="math notranslate nohighlight">\((m)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\xi =\)</span> Dimensionless adsorber column length <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\overline{t} =\)</span> Time <span class="math notranslate nohighlight">\((s)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\tau =\)</span> Dimensionless time <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\varepsilon_{t} =\)</span> Total porosity of adsorbent particle <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\varepsilon_{b} =\)</span> Bulk porosity of adsorbent particle <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\varepsilon_{p} =\)</span> Particle porosity of adsorbent particle <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(v =\)</span> Interstitial velocity <span class="math notranslate nohighlight">\((m/s)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(v_{0} =\)</span> Superficial velocity of feed <span class="math notranslate nohighlight">\((m/s)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(P_{0} =\)</span> Adsorption pressure <span class="math notranslate nohighlight">\((Pa)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(T_{0} =\)</span> Temperature of feed <span class="math notranslate nohighlight">\((K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(y_{0, i} =\)</span> Mole fraction of component <span class="math notranslate nohighlight">\(i\)</span> in feed <span class="math notranslate nohighlight">\((-)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\rho_{b, ads} =\)</span> Bulk density of adsorbent bed <span class="math notranslate nohighlight">\((kg/m^{3})\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\rho_{gas} =\)</span> Density of gas phase <span class="math notranslate nohighlight">\((kg/m^{3})\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(D_{ax} =\)</span> Axial dispersion coefficient <span class="math notranslate nohighlight">\((m^{2}/s)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(D_{m} =\)</span> Molecular diffusivity of gas phase <span class="math notranslate nohighlight">\((m^{2}/s)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(r_{p} =\)</span> Radius of adsorbent particles <span class="math notranslate nohighlight">\((m)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(r_{in} =\)</span> Inside radius of adsorber column <span class="math notranslate nohighlight">\((m)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\mu =\)</span> Viscosity of gas phase <span class="math notranslate nohighlight">\((Pa . s)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(K_{z} =\)</span> Thermal conductivity <span class="math notranslate nohighlight">\((W/m/K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(C_{p,ads} =\)</span> Heat capacity of adsorbent particles <span class="math notranslate nohighlight">\((J/kg/K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(C_{p,a} =\)</span> Heat capacity of adsorbed phase <span class="math notranslate nohighlight">\((J/mol/K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(C_{p,gas} =\)</span> Heat capacity of gas phase <span class="math notranslate nohighlight">\((J/mol/K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(\Delta H_{ads, i} =\)</span> Heat of adsorption of component <span class="math notranslate nohighlight">\(i\)</span> <span class="math notranslate nohighlight">\((J/mol)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(h_{in} =\)</span> Inside heat transfer coefficient <span class="math notranslate nohighlight">\((W/m^{2}/K)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(k_{i} =\)</span> Mass transfer coefficient of component <span class="math notranslate nohighlight">\(i\)</span>  <span class="math notranslate nohighlight">\((1/s)\)</span></div>
+</div>
 </section>
 </section>
 
