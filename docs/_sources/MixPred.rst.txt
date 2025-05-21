@@ -24,11 +24,11 @@ Watch how to use **MixPred** :ref:`here <MixPred-label>`
 **MixPred** has two models for
 mixture adsorption loading prediction which are as follows:
 
-1. Extended Dual-site Langmuir Model (EDSL)
-2. Ideal Adsorbed Solution Theory (IAST)
+* Extended Dual-site Langmuir Model (EDSL)
+* Ideal Adsorbed Solution Theory (IAST)
 
 
-1. Extended Dual-site Langmuir Model (EDSL)
+Extended Dual-site Langmuir Model (EDSL)
 ---------------------------------------------
 
 The extended dual-site Langmuir (EDSL) model is a generalization of the Langmuir model for multi-component mixture adsorption. The model is expressed as,
@@ -49,7 +49,7 @@ Note that the EDSL model is thermodynamically consistent only when the saturatio
 .. note::
    The EDSL model in **MixPred** is applicable only when the isotherm of each individual component is described using the Langmuir isotherm model.
 
-2. Ideal Adsorbed Solution Theory (IAST)
+Ideal Adsorbed Solution Theory (IAST)
 ---------------------------------------------
 
 IAST is a thermodynamic framework to calculate the mixture isotherms using pure component isotherm. The IAST is based on three fundamental assumptions:

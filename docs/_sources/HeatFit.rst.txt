@@ -21,7 +21,7 @@ Watch how to use **HeatFit** :ref:`here <HeatFit-label>`
 In **HeatFit**, isotherm fitting and prediction of the isosteric heat of adsorption can be carried out using either the Clausius-Clapeyron or Virial equations.
 Fitting method varies based on the chosen model.
 
-1. Clausius-Clapeyron Equation
+Clausius-Clapeyron Equation
 ---------------------------------------------
 
 The Clausius-Clapeyron is a thermodynamic relationship which expresses the relationship between pressure and temperature for phase change processes.
@@ -183,7 +183,7 @@ while minimizing the objective function defined as:
 
 ---------------------------------------------
 
-1. Virial Equation
+Virial Equation
 ---------------------------------------------
 
 The Virial equation is given as,
