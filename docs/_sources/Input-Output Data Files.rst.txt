@@ -19,7 +19,7 @@ to users with diverse backgrounds. In this section, we outline the supported inp
 
 -------
 
-1. Input File
+Input File
 --------------
 
 IsoFit and HeatFit can import isotherm data from
@@ -105,7 +105,7 @@ The :math:`P_{0}` can be specified via one of the following methods:
 Several sample input files can be found in our repository `sample-input-files <https://github.com/mtap-research/AIM/tree/main/input-files>`_. Users can use those files
 and copy, paste their data for quickstart experience of **IsoFit** and **HeatFit** .
 
-2. Ouput File
+Ouput Files
 --------------
 
 **IsoFit** and **HeatFit** generate an output containing the isotherm model name, fitted parameters, and fitting statistics.
